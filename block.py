@@ -25,6 +25,7 @@ class Block:
 		self.txCount = 0
 		self.Txs = []
 
+
 		if self.hasLength(blockchain, 8):	
 			self.magicNum = uint4(blockchain)
 			self.blocksize = uint4(blockchain)
@@ -67,6 +68,7 @@ class Block:
 	def setHeader(self, blockchain):
 		self.blockHeader = BlockHeader(blockchain)
 
+
 	def toString(self):
 		print ""
 		print "Magic No: \t%8x" % self.magicNum
@@ -107,7 +109,9 @@ class Tx:
 		for o in self.outputs:
 			o.toString()
 		print "Lock Time:\t %d" % self.lockTime
-				
+
+	#def toDb(self):
+
 
 class txInput:
 	def __init__(self, blockchain):

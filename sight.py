@@ -2,6 +2,7 @@
 import sys
 from blocktools import *
 from block import Block, BlockHeader
+import db
 
 def parse(blockchain):
 	print 'print Parsing Block Chain'
@@ -13,6 +14,7 @@ def parse(blockchain):
 	while continueParsing:	
 		block = Block(blockchain)
 		continueParsing = block.continueParsing
+		#db.save2db(block)
 		if continueParsing:
 			block.toString()
 		counter+=1
@@ -22,12 +24,14 @@ def parse(blockchain):
 	print 'Parsed %s blocks', counter
 
 def main():
-	if len(sys.argv) < 2:
-            print 'Usage: sight.py filename'
-	else:
-		with open(sys.argv[1], 'rb') as blockchain:
-			parse(blockchain)
+	# if len(sys.argv) < 2:
+     #        print 'Usage: sight.py filename'
+	# else:
+	# 	with open(sys.argv[1], 'rb') as blockchain:
+	# 		parse(blockchain)
 
+	with open("1M.dat", 'rb') as blockchain:
+		parse(blockchain)
 
 
 if __name__ == '__main__':
