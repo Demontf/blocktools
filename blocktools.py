@@ -1,5 +1,7 @@
 import struct
-
+from sys import byteorder
+from hashlib import sha256
+import chardet
 
 def uint1(stream):
 	return ord(stream.read(1))
@@ -39,4 +41,24 @@ def varint(stream):
 def hashStr(bytebuffer):
 	return ''.join(('%02x'%ord(a)) for a in bytebuffer)
 
+def txhex(stream,length):
+	return hashStr(stream.read(length))
 
+
+
+
+def hex2hash(str):
+	#print chardet.detect(str)
+	str = str.decode("hex")
+	hash = sha256(sha256(str).digest()).digest()
+	#Internal-Byte-Order Hash
+	iboh = hash.encode('hex_codec')
+	#print iboh
+	#RPC-Byte-Order Hash
+	rboh = hash[::-1].encode('hex_codec')
+	#print rboh
+	return rboh
+
+# if __name__ == '__main__':
+# 	str = "01000000010000000000000000000000000000000000000000000000000000000000000000ffffffff0704ffff001d0102ffffffff0100f2052a01000000434104d46c4968bde02899d2aa0963367c7a6ce34eec332b32e42e5f3407e052d64ac625da6f0718e7b302140434bd725706957c092db53805b821a85b23a7ac61725bac00000000"
+# 	hex2hash(str)

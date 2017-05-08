@@ -14,9 +14,9 @@ def parse(blockchain):
 	while continueParsing:	
 		block = Block(blockchain)
 		continueParsing = block.continueParsing
-		#db.save2db(block)
-		if continueParsing:
-			block.toString()
+		db.save2db(block)
+		# if continueParsing:
+		# 	block.toString()
 		counter+=1
 
 	print ''
