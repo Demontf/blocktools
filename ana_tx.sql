@@ -11,7 +11,7 @@
  Target Server Version : 50624
  File Encoding         : utf-8
 
- Date: 05/07/2017 11:55:08 AM
+ Date: 05/08/2017 21:46:43 PM
 */
 
 SET NAMES utf8;
@@ -27,7 +27,7 @@ CREATE TABLE `edges` (
   `pk_id` int(11) DEFAULT NULL,
   `type` int(11) DEFAULT NULL COMMENT '1 in 2 out',
   `value` double DEFAULT NULL,
-  `index` int(11) DEFAULT NULL COMMENT 'only for type = 2',
+  `idx` int(11) DEFAULT NULL COMMENT 'only for type = 2',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -54,6 +54,6 @@ CREATE TABLE `tx` (
   `vout` varchar(255) DEFAULT NULL,
   `times` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=686 DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS = 1;
